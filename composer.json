@@ -1,0 +1,29 @@
+{
+    "name": "fernandopetry/translatebygoogle",
+    "description": "Translate single by google",
+    "keywords": ["fernandopetry", "php", "google","translate"],
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=5.3",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Petry\\Translate\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Petry\\Translate\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

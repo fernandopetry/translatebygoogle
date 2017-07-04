@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Translate;
+
+/**
+ *     
+ * 
+ * Classe: TranslateByGoogle
+ * 
+ * @filesource TranslateByGoogle.php
+ * @package apoio
+ * @subpackage 
+ * @category
+ * @version v1.0
+ * @since 03/07/2017 11:17:01
+ * @copyright (cc) 2017, Fernando Petry
+ * 
+ * @author Fernando Petry <fernando@ideia.ppg.br>                                                  
+ */
+class TranslateByGoogle
+{
+
+    private $localeSource;
+    private $localeDest;
+    private $string;
+    private $url;
+
+    function __construct($localeSource = 'pt_BR', $localeDest = 'en_US')
+    {
+        $this->localeSource = $localeSource;
+        $this->localeDest   = $localeDest;
+    }
+
+    public function translate($string)
+    {
+        $this->string = $string;
+        $this->url    = "https://translate.googleapis.com/translate_a/single?client=gtx&sl={$this->localeSource}&tl={$this->localeDest}&dt=t&q={$this->string}";
+
+        $client = new \GuzzleHttp\Client();
+        $res    = $client->request('GET', $this->url);
+        $array  = json_decode($res->getBody());
+        $return = $array[0][0][0];
+        $return = str_replace(" ​​", " ", $return);
+        return $return;
+    }
+
+}
+
